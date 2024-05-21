@@ -1,3 +1,4 @@
-# Bistro Boss Restaurant with Menu and Order
+# Bistro Boss Restaurant with Authentication
 
-This is Second Part Client Side Repo of Bistro Boss Restaurant. Where I build simple ui and learn little bit new.
+This is Third Part Client Side Repo of Bistro Boss Restaurant. Where I build simple ui and learn little bit new.
+[Server Side]()
