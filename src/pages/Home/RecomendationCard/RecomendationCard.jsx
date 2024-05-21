@@ -1,7 +1,7 @@
 const RecomendationCard = ({ recomendedFood }) => {
   return (
     <div>
-      <div className='card card-compact w-96 bg-gray-200 p-4 shadow'>
+      <div className='card card-compact  w-96 bg-gray-200 p-4 shadow'>
         <figure>
           <img
             src={recomendedFood.food_image}
