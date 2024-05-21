@@ -1,7 +1,23 @@
 import LoginImage from '../../assets/others/authentication2.png';
 import LoginBg from '../../assets/others/authentication.png';
-
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from 'react-simple-captcha';
+import { useEffect } from 'react';
 const Login = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.pass.value;
+    console.log(email, password);
+  };
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   return (
     <div
       className='min-h-screen bg-no-repeat bg-cover flex items-center justify-center'
@@ -18,7 +34,7 @@ const Login = () => {
             alt='Login'
           />
         </div>
-        <form className='w-full lg:w-1/2 p-6'>
+        <form className='w-full lg:w-1/2 p-6' onSubmit={handleLogin}>
           <h1 className='text-3xl mb-5 text-center font-bold text-gray-700'>
             Login
           </h1>
@@ -53,6 +69,21 @@ const Login = () => {
               className='input input-primary w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none'
               required
             />
+          </div>
+          <div className='mb-6'>
+            <label className='block text-sm font-medium text-gray-600'>
+              <button>
+                <LoadCanvasTemplate />
+              </button>
+            </label>
+            <input
+              type='text'
+              name='captcha'
+              placeholder='type Valid Captcha'
+              className='input input-primary w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none'
+              required
+            />
+            <button className='btn btn-xs btn-success'>Validate</button>
           </div>
           <div className='flex items-center justify-center'>
             <input
