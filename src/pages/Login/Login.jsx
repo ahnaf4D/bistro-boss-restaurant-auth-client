@@ -7,8 +7,11 @@ const Login = () => {
       className='min-h-screen bg-no-repeat bg-cover flex items-center justify-center'
       style={{ backgroundImage: `url(${LoginBg})` }}
     >
-      <div className='bg-white bg-opacity-90 rounded-lg shadow-2xl flex items-center justify-center flex-col lg:flex-row p-8'>
-        <div className='hidden lg:block lg:w-1/2'>
+      <div
+        className=' rounded-lg shadow-2xl flex items-center justify-center flex-col lg:flex-row p-8'
+        style={{ backgroundImage: `url(${LoginBg})` }}
+      >
+        <div className='hidden lg:block lg:w-3/4'>
           <img
             src={LoginImage}
             className='object-cover w-full h-full rounded-lg'
