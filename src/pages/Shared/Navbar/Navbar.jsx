@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const navOptions = (
     <>
       <li>
@@ -10,13 +15,32 @@ const Navbar = () => {
         <Link to='/menu'>Menu</Link>
       </li>
       <li>
+        <Link to='/secret'>Secret</Link>
+      </li>
+      <li>
         <Link to='/order-food'>Order Food</Link>
       </li>
     </>
   );
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: 'Logout Success',
+          icon: 'success',
+        });
+        navigate('/login');
+      })
+      .catch(() => {
+        Swal.fire({
+          title: 'Logout error',
+          icon: 'error',
+        });
+      });
+  };
   return (
     <div>
-      <div className='navbar sticky z-40 bg-opacity-30 text-white bg-black bg-opacity-60 '>
+      <div className='navbar sticky z-40  text-white bg-black bg-opacity-60 '>
         <div className='navbar-start'>
           <div className='dropdown'>
             <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>
@@ -51,7 +75,15 @@ const Navbar = () => {
           <ul className='menu menu-horizontal px-1'>{navOptions}</ul>
         </div>
         <div className='navbar-end'>
-          <a className='btn btn-warning text-xl'>Login</a>
+          {user ? (
+            <button className='btn btn-active text-xl' onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <Link to='/login'>
+              <button className='btn btn-warning text-xl'>Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
