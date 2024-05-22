@@ -9,7 +9,8 @@ import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 const Signup = () => {
   const navigate = useNavigate();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUser, user, updateUserProfile, logOut } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -25,7 +26,11 @@ const Signup = () => {
           title: 'Account Creation Successfull',
           icon: 'success',
         });
-        navigate('/');
+        updateUserProfile(data.name);
+        setUser({ ...user, photoURL: null, displayName: data.name });
+        logOut();
+        navigate('/login');
+        reset();
       })
       .catch((err) => {
         console.log(err.massage);
